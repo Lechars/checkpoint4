@@ -43,9 +43,15 @@
 
 /* changements perso */
 
-.orange{
-  background-color: #ff7f00;
+.foot{
+  background-color: #ad071e;
+  display: flex;
+  min-height: 100px;
+  justify-content: center;
+  align-items: center; 
 }
+
+/* fin des changements perso */
 
 html {
   font-family: sans-serif;

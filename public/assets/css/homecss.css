@@ -5,11 +5,120 @@
 
 h1{
 	color: red;
-	background-color: #fbd22a;
 	font-family: Apple_Chancery;
+	margin: 0;
+	border-radius:10px;
+	font-size: 3rem;
+	justify-content: center;
+	text-align: center;
 }
 
 h2{
 	color:red;
+	margin: 0;
+	border-radius:10px;
+	font-size: 2rem;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+a {
+	font-family: Apple_Chancery; 
+	color:red;
+	text-decoration:none;
+	font-size: 2rem;
+	font-weight: bolder;
+	background-color: white;
+	border: solid 5px;
+	border-color: #5588e7;
+	border-radius:10px;
+	justify-content: center;
+	text-align: center;
+}
+
+.titre{
+	border-radius:10px;
+	border: solid 5px;
+	border-color: #5588e7;
+}
+
+
+.conth1{
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background-color: #fbd22a;
+	min-height:150px;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+}
+
+.conth2{
+	min-height:100px;
 	background-color:#e47f0c;
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	font-family: Apple_Chancery;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+}
+
+.liencont{
+	display:flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	min-height: 300px;
+	max-width: 100%;
+}
+
+.lien1{
+	display:flex;
+	min-width: 50%;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	min-height: 300px;
+	background-image: url("/assets/images/motif.jpg");
+	background-size: cover;
+}
+
+.lien2{
+	min-width:50%;
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	min-height: 300px;
+	background-image: url("/assets/images/clow.jpg");
+	background-size: cover;
+}
+
+.foot{
+  background-color: #ad071e;
+  display: flex;
+  min-height: 100px;
+  justify-content: center;
+  align-items: center; 
+}
+
+p{
+	margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .liencont {
+    flex-direction: column;
+  }
+  .lien2{
+  	min-width: 100%;
+  }
+  
+  .lien1{
+  	min-width: 100%;
+  }
 }
