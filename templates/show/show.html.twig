@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show{% endblock %}
+
+{% block body %}
+    <h1>Show</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ show.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ show.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ show.description }}</td>
+            </tr>
+            <tr>
+                <th>Illustration</th>
+                <td>{{ show.illustration }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('show_index') }}">back to list</a>
+
+    <a href="{{ path('show_edit', {'id': show.id}) }}">edit</a>
+
+    {{ include('show/_delete_form.html.twig') }}
+{% endblock %}

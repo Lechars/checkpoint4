@@ -3,9 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel = "stylesheet" href="/assets/css/bootstrap.css"/>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        <h1 class ='letitre"'>Wild Circus</h1>
+        {% include "_navbar.html.twig" %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

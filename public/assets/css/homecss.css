@@ -1,0 +1,15 @@
+@font-face{
+	font-family: "Apple_Chancery";
+	src: url('/assets/police/Apple_Chancery.ttf');
+}
+
+h1{
+	color: red;
+	background-color: #fbd22a;
+	font-family: Apple_Chancery;
+}
+
+h2{
+	color:red;
+	background-color:#e47f0c;
+}
