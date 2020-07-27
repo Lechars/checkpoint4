@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
 /**
@@ -27,6 +28,7 @@ class ArtisteController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/new", name="artiste_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -37,6 +39,15 @@ class ArtisteController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $file=$form->get('profilePicture')->getData();
+            $fileEx=$file->guessExtension();
+            $imageName=$artiste->getNom();
+            $newFilename =$imageName.'.'.$fileEx;
+            $file->move(
+                $this->getParameter('image_directory'),
+                $newFilename
+            );
+            $artiste->setPhoto($newFilename);
             $entityManager->persist($artiste);
             $entityManager->flush();
 
@@ -50,7 +61,7 @@ class ArtisteController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="artiste_show", methods={"GET"})
+     * @Route("/{id}", name="artiste_show", methods={"GET"},requirements = {"id": "\d+"})
      */
     public function show(Artiste $artiste): Response
     {
@@ -60,7 +71,8 @@ class ArtisteController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="artiste_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
+     * @Route("/{id}/edit", name="artiste_edit", methods={"GET","POST"},requirements = {"id": "\d+"})
      */
     public function edit(Request $request, Artiste $artiste): Response
     {
@@ -80,7 +92,8 @@ class ArtisteController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="artiste_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
+     * @Route("/{id}", name="artiste_delete", methods={"DELETE"},requirements = {"id": "\d+"})
      */
     public function delete(Request $request, Artiste $artiste): Response
     {

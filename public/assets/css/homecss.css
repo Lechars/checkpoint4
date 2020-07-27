@@ -37,10 +37,15 @@ a {
 	text-align: center;
 }
 
+.posab {
+	position:absolute;
+}
 .titre{
 	border-radius:10px;
 	border: solid 5px;
 	border-color: #5588e7;
+	background-color: #fbd22a;
+
 }
 
 
@@ -83,7 +88,7 @@ a {
 	justify-content: center;
 	align-items: center;
 	min-height: 300px;
-	background-image: url("/assets/images/motif.jpg");
+	background-image: url("/assets/images/clow.jpg");
 	background-size: cover;
 }
 
@@ -94,8 +99,9 @@ a {
 	justify-content: center;
 	align-items: center;
 	min-height: 300px;
-	background-image: url("/assets/images/clow.jpg");
+	background-image: url("/assets/images/motif.jpg");
 	background-size: cover;
+
 }
 
 .foot{
@@ -104,6 +110,9 @@ a {
   min-height: 100px;
   justify-content: center;
   align-items: center; 
+  border: solid 5px;
+  border-color: #5588e7;
+  border-radius:10px;
 }
 
 p{
@@ -117,7 +126,7 @@ p{
   .lien2{
   	min-width: 100%;
   }
-  
+
   .lien1{
   	min-width: 100%;
   }

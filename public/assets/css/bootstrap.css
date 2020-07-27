@@ -51,6 +51,11 @@
   align-items: center; 
 }
 
+.photo{
+  width:50px;
+  height:auto;
+}
+
 /* fin des changements perso */
 
 html {

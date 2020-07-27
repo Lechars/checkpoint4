@@ -22,9 +22,11 @@
                 <td>{{ show.titre }}</td>
                 <td>{{ show.description }}</td>
                 <td>{{ show.illustration }}</td>
-                <td>
-                    <a href="{{ path('show_show', {'id': show.id}) }}">show</a>
-                    <a href="{{ path('show_edit', {'id': show.id}) }}">edit</a>
+
+                <td> <a href="{{ path('show_show', {'id': show.id}) }}">show</a></td>
+                    {% if is_granted("ROLE_ADMIN") %}
+                <td><a href="{{ path('show_edit', {'id': show.id}) }}">edit</a></td>
+                    {%endif%}
                 </td>
             </tr>
         {% else %}
@@ -35,5 +37,8 @@
         </tbody>
     </table>
 
-    <a href="{{ path('show_new') }}">Create new</a>
+    {% if is_granted("ROLE_ADMIN") %}
+        <a href="{{ path('show_new') }}">Create new</a>
+    {%endif%}
+
 {% endblock %}

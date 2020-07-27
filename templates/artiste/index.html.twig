@@ -22,9 +22,11 @@
                 <td>{{ artiste.Nom }}</td>
                 <td>{{ artiste.Carriere }}</td>
                 <td>{{ artiste.photo }}</td>
-                <td>
-                    <a href="{{ path('artiste_show', {'id': artiste.id}) }}">show</a>
-                    <a href="{{ path('artiste_edit', {'id': artiste.id}) }}">edit</a>
+                <td><a href="{{ path('artiste_show', {'id': artiste.id}) }}">show</a></td>
+
+                    {% if is_granted("ROLE_ADMIN") %}
+                <td><a href="{{ path('artiste_edit', {'id': artiste.id}) }}">edit</a></td>
+                    {%endif%}
                 </td>
             </tr>
         {% else %}
@@ -34,6 +36,7 @@
         {% endfor %}
         </tbody>
     </table>
-
+{% if is_granted("ROLE_ADMIN") %}
     <a href="{{ path('artiste_new') }}">Create new</a>
+{%endif%}
 {% endblock %}

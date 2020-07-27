@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/show")
@@ -36,6 +37,15 @@ class ShowController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $file=$form->get('illustration')->getData();
+            $fileEx=$file->guessExtension();
+            $imageName=$show->getIllustration();
+            $newFilename =$imageName.'.'.$fileEx;
+            $file->move(
+                $this->getParameter('image_directory'),
+                $newFilename
+            );
+            $show->setIllustration($newFilename);
             $entityManager->persist($show);
             $entityManager->flush();
 
@@ -49,7 +59,8 @@ class ShowController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="show_show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
+     * @Route("/{id}", name="show_show", methods={"GET"},requirements = {"id": "\d+"})
      */
     public function show(Show $show): Response
     {
@@ -59,7 +70,8 @@ class ShowController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="show_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
+     * @Route("/{id}/edit", name="show_edit", methods={"GET","POST"},requirements = {"id": "\d+"})
      */
     public function edit(Request $request, Show $show): Response
     {
@@ -79,7 +91,8 @@ class ShowController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="show_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
+     * @Route("/{id}", name="show_delete", methods={"DELETE"},requirements = {"id": "\d+"})
      */
     public function delete(Request $request, Show $show): Response
     {
